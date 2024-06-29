@@ -20,6 +20,21 @@ This project offers a secure and reliable platform for distributing examination 
 - **Secure Exam Paper Viewing and Download:**
     - Secure interface for authorized users to view and download examination papers.
     - Time-limited access control for downloaded papers restricts access only during the examination period, preventing leaks before or after exams.
+  
+## Screenshots
+
+<img src="screenshots/image-1.png"/>
+<img src="screenshots/image-2.png"/>
+<img src="screenshots/image-3.png"/>
+<img src="screenshots/image-4.png"/>
+<img src="screenshots/image-9.png"/>
+<img src="screenshots/image-6.png"/>
+<img src="screenshots/image-5.png"/>
+<img src="screenshots/image-7.png"/>
+<img src="screenshots/image-8.png"/>
+
+
+
 
 ## Getting Started
 
