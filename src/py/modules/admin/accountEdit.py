@@ -18,6 +18,8 @@ def accountsEdit():
         else:
             return redirect(url_for('accountsView'))
     activeUserData = session.get('activeUserData')
+    if activeUserData['role'] not in ['administrators']:
+        return redirect(url_for('dashboard'))
     if request.method == 'POST':
         editUserData = {
             'username':request.form['user_name'],
@@ -60,7 +62,7 @@ def accountsEdit():
         
         return redirect(url_for('accountsView'))
     message = session.pop('message', None)
-    return render_template('admin/accountEdit.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'],userData=userData,message=message)
+    return render_template('admin/accountEdit.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'],userData=userData,message=message,role=activeUserData['role'],lastlogin=activeUserData['lastlogin'])
 
 def doesUserExist(userid):
    cursor.execute("SELECT * FROM accounts WHERE user_id = %s",(userid,))

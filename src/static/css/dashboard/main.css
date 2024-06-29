@@ -370,7 +370,7 @@ img {
   margin: 0 auto;
   border-radius: 8px;
   overflow: hidden;
-  max-height: 290px;
+  max-height: 380px;
 }
 
 .banner {
@@ -428,7 +428,7 @@ img {
   font-size: 1.2rem;
 }
 
-.buttons a{
+.buttons a,.edit_profile{
   display: flex;
   width: 100%;
   padding: 10px 15px;
@@ -449,6 +449,7 @@ img {
   width: 100%;
   background-color: #7289da;
   color: #fff;
+  font-weight: bold;
 }
 .popup_icon{
   max-width: 1.4rem;
@@ -511,3 +512,94 @@ img {
    color: var(--first-color);
 }
 
+.main-container2{
+  background-color: var(--container-color);
+  height: 85vh;
+  height: 85dvh;
+  width: 100%;
+  border-radius: 1.2rem;
+  overflow: auto;
+}
+
+.papers-main-container{
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.upload-container{
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+  padding: 1rem;
+  border-bottom: 2px dashed var(--text-color);
+}
+.upload-container span{
+  font-size: larger;
+  font-weight: bold;
+}
+.upload-container a{
+  padding: .5rem;
+  background-color: var(--text-color);
+  width: fit-content;
+  text-decoration: none;
+  color: var(--body-color);
+  border-radius: .5rem;
+  margin-left: .5rem;
+}
+
+.paper-heading span{
+  font-size: larger;
+  font-weight: bold;
+}
+
+.papers-container{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  
+  gap: 1.7rem;
+}
+
+.paper-details{
+  display: flex;
+  flex-direction: column;
+}
+
+.paper-name,.paper-desc,.paper-uploadby{
+  display: flex;
+  flex-direction: column;
+  font-size: smaller;
+}
+
+.paper-attr{
+  font-weight: bolder;
+}
+
+.paper-desc :nth-child(2),.paper-uploadby :nth-child(2){
+  opacity: 70%;
+}
+
+.paper{
+  border: 2px solid var(--text-color);
+  border-radius: 1.5rem;
+  text-wrap: wrap;
+  padding: 1rem;
+  background-color: var(--body-color);
+  
+}
+.paper-view{
+  display: flex;
+  justify-content: flex-end;
+}
+.paper-view a{
+  display: flex;
+  justify-content: flex-end;
+  padding: .5rem;
+  background-color: var(--text-color);
+  width: fit-content;
+  text-decoration: none;
+  color: var(--body-color);
+  border-radius: .5rem;
+}

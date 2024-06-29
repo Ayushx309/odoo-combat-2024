@@ -9,7 +9,8 @@ import json
 @authentication
 def accountsCreate():
     activeUserData = session.get('activeUserData')
-
+    if activeUserData['role'] not in ['administrators']:
+        return redirect(url_for('dashboard'))
     if request.method == 'POST':
         newUserData = {
             'username':request.form['user_name'],
@@ -52,7 +53,7 @@ def accountsCreate():
         
         return redirect(url_for('accountsCreate'))
     message = session.pop('message', None)
-    return render_template('admin/accountCreate.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'], message=message)
+    return render_template('admin/accountCreate.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'], message=message,role=activeUserData['role'],lastlogin=activeUserData['lastlogin'])
 
 def addUserToDB(data: dict)-> bool:
     try:

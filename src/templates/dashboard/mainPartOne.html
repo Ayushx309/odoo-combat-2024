@@ -35,18 +35,19 @@
                             <i class='bx bx-home nav_icon'></i>
                             <span class="nav_name">Home</span>
                         </a>
-
+                        {% if role=='administrator' or role=='examiner' %}
                         <a href="/upload" class="nav_link" id="upload_active">  
                             <i class="fi fi-sr-file-upload nav_icon_fi"></i>
                             <span class="nav_name">Upload Papers</span>
                         </a>
+                        {% endif %}
                         <!-- single menu -->
 
 
                         <!-- Sub Menu -->
-
+                        {% if role=='administrator' %}
                         <h3 class="nav_subtitle">Administration</h3>
-
+                        
                         <a href="/admin/accounts/view" class="nav_link" id="accounts_active">  
                             <i class='bx bxs-user-account nav_icon'></i>
                             <span class="nav_name">Accounts</span>
@@ -56,7 +57,7 @@
                             <i class='bx bxs-file nav_icon'></i>
                             <span class="nav_name">Audit Logs</span>
                         </a>
-
+                        {% endif %}
                         <!-- Sub Menu -->
 
                     </div>

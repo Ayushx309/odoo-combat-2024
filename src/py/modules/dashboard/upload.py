@@ -17,6 +17,9 @@ import time
 @authentication
 def upload():
     activeUserData = session.get('activeUserData')
+    if activeUserData['role'] not in ['administrators','examiner']:
+        return redirect(url_for('dashboard'))
+    
     if request.method == 'POST':
 
         paperData = {
@@ -69,7 +72,7 @@ def upload():
         
         return redirect(url_for('upload'))
     message = session.pop('message', None)
-    return render_template('dashboard/upload.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'],message=message)
+    return render_template('dashboard/upload.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'],message=message,role=activeUserData['role'],lastlogin=activeUserData['lastlogin'])
 
 
 def extractTagIds(tags_json):
@@ -105,7 +108,7 @@ def encryptPDFandSave(pdf_file):
         uniqueFilename = generateUniqueFilename()
 
         encrypted_file_path = os.path.join(save_directory, uniqueFilename)
-        storePath = f"/Storage/papers/{uniqueFilename}"
+        storePath = f"Storage/papers/{uniqueFilename}"
 
         with open(encrypted_file_path, 'wb') as encrypted_file:
             pdf_writer.write(encrypted_file)

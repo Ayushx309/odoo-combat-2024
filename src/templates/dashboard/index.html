@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,13 +10,34 @@
 
 <body>
     {% include "Dashboard/mainPartOne.html" %}
-
-</div>
-
-
+    <div class="main-container2">
+        <div class="upload-container">
+            <span>Upload a paper</span>
+            <a href="/upload">Upload</a>
+        </div>
+        <div class="papers-main-container">
+            <div class="paper-heading">
+                <span>View papers</span>
+            </div>
+            <div class="papers-container">
+                {% for paper in papers %}
+    <div class="paper">
+        <div class="paper-details">
+            <span class="paper-name"><span class="paper-attr">Name :</span> {{ paper.paper_name }}</span>
+            <span class="paper-desc"><span class="paper-attr">Description :</span> {{ paper.paper_desc }}</span>
+            <span class="paper-uploadby"><span class="paper-attr">Uploaded By :</span> {{ paper.paper_uploadedby }}</span>
+        </div>
+        <div class="paper-view">
+            <a href="/paper/view?id={{ paper.paper_id }}">View Paper</a>
+        </div>
+    </div>
+    {% endfor %}
+            </div>
+        </div>
+    </div>
     {% include "Dashboard/mainPartTwo.html" %}
     <script>
-        window.onload = function() {
+        window.onload = function () {
             function addActiveClassToAnchor(id) {
                 var anchor = document.getElementById(id);
                 if (anchor) {
@@ -28,4 +50,5 @@
         };
     </script>
 </body>
+
 </html>

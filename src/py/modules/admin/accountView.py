@@ -7,4 +7,6 @@ import json
 @authentication
 def accountsView():
     activeUserData = session.get('activeUserData')
-    return render_template('admin/accountView.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'])
+    if activeUserData['role'] not in ['administrators']:
+        return redirect(url_for('dashboard'))
+    return render_template('admin/accountView.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'],role=activeUserData['role'],lastlogin=activeUserData['lastlogin'])
