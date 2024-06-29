@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/admin/accountCommon.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/admin/accountForm.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/admin/auditLogs.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css">
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+    </style>
+    {% include "Dashboard/mainStyles.html" %}
+</head>
+
+<body>
+    {% include "Dashboard/mainPartOne.html" %}
+    <!-- Form Title -->
+    <div class="page-title-container">
+        <span class="page-title">Create new account</span>
+    </div>
+    <!-- Form Title -->
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="tab-menu-container">
+            <a href="/admin/auditLogs/login" class="tab_menu_btn active_tab">Login Logs</a>
+            <a href="/admin/auditLogs/papers" class="tab_menu_btn ">Paper Logs</a>
+        </div>
+        <div class="content-container">
+            <table>
+                <tr>
+                    <th>Username</th>
+                    <th>User IP</th>
+                    <th>Timestamp</th>
+                </tr>
+                {% for log in loginLogs %}
+                <tr>
+                    <td>@{{log[0]}}</td>
+                    <td>{{log[1]}}</td>
+                    <td>{{log[2]}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

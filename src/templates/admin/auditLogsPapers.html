@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/Admin/accountCommon.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/Admin/accountForm.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css">
+    {% include "Dashboard/mainStyles.html" %}
+</head>
+
+<body>
+    {% include "Dashboard/mainPartOne.html" %}
+    <!-- Form Title -->
+    <div class="page-title-container">
+        <span class="page-title">Create new account</span>
+    </div>
+    <!-- Form Title -->
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="tab-menu-container">
+            <a href="/admin/auditLogs/login" class="tab_menu_btn ">Login Logs</a>
+            <a href="/admin/auditLogs/papers" class="tab_menu_btn active_tab">Paper Logs</a>
+        </div>
+        <div class="content-container">
+            
+        </div>
+    </div>
+    </div>
+</body>
+</html>

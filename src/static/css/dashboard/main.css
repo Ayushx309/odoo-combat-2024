@@ -521,6 +521,21 @@ img {
   overflow: auto;
 }
 
+.message{
+  padding: 1rem;
+  display: flex;
+  height: 85vh;
+  height: 85dvh;
+ justify-content: center;
+ align-items: center;
+
+}
+
+.message span{
+  font-size: large;
+  font-weight: bolder;
+}
+
 .papers-main-container{
   padding: 1rem;
   display: flex;

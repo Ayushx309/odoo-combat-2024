@@ -17,7 +17,7 @@ import time
 @authentication
 def upload():
     activeUserData = session.get('activeUserData')
-    if activeUserData['role'] not in ['administrators','examiner']:
+    if activeUserData['role'] not in ['administrator','examiner']:
         return redirect(url_for('dashboard'))
     
     if request.method == 'POST':

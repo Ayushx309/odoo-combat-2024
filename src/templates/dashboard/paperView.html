@@ -11,31 +11,37 @@
 <body>
     {% include "Dashboard/mainPartOne.html" %}
     <div class="main-container2">
-        <div class="upload-container">
-            <span>Upload a paper</span>
-            <a href="/upload">Upload</a>
+        {% if paperData is string %}
+        <div class="message">
+            <span>{{ paperData }}</span>
         </div>
+        {% endif %}
+        {% if paperData is not string %}
         <div class="papers-main-container">
             <div class="paper-heading">
                 <span>View papers</span>
             </div>
             <div class="papers-container">
-                {% for paper in papers %}
+               
                 <div class="paper">
                     <div class="paper-details">
-                        <span class="paper-name"><span class="paper-attr">Name :</span> {{ paper.paper_name }}</span>
-                        <span class="paper-desc"><span class="paper-attr">Description :</span> {{ paper.paper_desc
+                        <span class="paper-name"><span class="paper-attr">Name :</span> {{ paperData.paper_name }}</span>
+                        <span class="paper-desc"><span class="paper-attr">Description :</span> {{ paperData.paper_desc
                             }}</span>
                         <span class="paper-uploadby"><span class="paper-attr">Uploaded By :</span> {{
-                            paper.paper_uploadedby }}</span>
+                            paperData.paper_uploadedby }}</span>
                     </div>
                     <div class="paper-view">
-                        <a href="/paper/view?id={{ paper.paper_id }}">View Paper</a>
+                        <!-- <a href="/paper/view?id={{ paper.paper_id }}">View Paper</a> -->
                     </div>
                 </div>
-                {% endfor %}
+               
             </div>
         </div>
+
+        
+
+    </div>
     </div>
     {% include "Dashboard/mainPartTwo.html" %}
     <script>

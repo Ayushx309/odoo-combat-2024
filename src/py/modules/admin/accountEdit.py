@@ -18,7 +18,7 @@ def accountsEdit():
         else:
             return redirect(url_for('accountsView'))
     activeUserData = session.get('activeUserData')
-    if activeUserData['role'] not in ['administrators']:
+    if activeUserData['role'] not in ['administrator']:
         return redirect(url_for('dashboard'))
     if request.method == 'POST':
         editUserData = {

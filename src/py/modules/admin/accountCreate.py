@@ -9,7 +9,7 @@ import json
 @authentication
 def accountsCreate():
     activeUserData = session.get('activeUserData')
-    if activeUserData['role'] not in ['administrators']:
+    if activeUserData['role'] not in ['administrator']:
         return redirect(url_for('dashboard'))
     if request.method == 'POST':
         newUserData = {

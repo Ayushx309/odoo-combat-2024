@@ -30,9 +30,10 @@ def login():
                "user_name" : userAccountData.user_name,
                "display_name" : userAccountData.user_dname,
                "role":userAccountData.user_role,
-               "lastlogin":userAccountData.user_lastlogin
+               "lastlogin":userAccountData.user_lastlogin,
+               "ip": request.remote_addr
             }
-
+            addLoginAudit(userAccountData)
             return redirect(url_for('dashboard'))
          else:
             return render_template('login/login.html',loginError="Password Incorrect!")  
@@ -91,6 +92,10 @@ def fetchUserData(username):
       return user  
    return None
 
-
-
-
+def addLoginAudit(userAccountData):
+   try:
+      cursor.execute("INSERT INTO audit(user_id,audit_type,audit_ip) VALUES(%s,%s,%s)",(userAccountData.user_id,'login',request.remote_addr))
+      return True
+   except Error as e:
+      conn.rollback()
+      return False
