@@ -36,6 +36,9 @@ This project offers a secure and reliable platform for distributing examination 
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt
+3. Database Setup:
+    - Create a new MySQL database named 'spds' for the project.
+    - Import the provided SQL tables provided in [sql](src/sql/) folder of the project.
 
 - **Default Login Credentials (for initial setup only):**
 
