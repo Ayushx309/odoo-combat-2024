@@ -6,6 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     {% include "Dashboard/mainStyles.html" %}
+    <style>
+        .paper-details a{
+            margin-top: 1rem;
+            padding: .5rem;
+            background-color: #58555e;
+            border-radius: .5rem;
+            text-decoration: none;
+            color: white;
+            width: fit-content;
+        }
+    </style>
 </head>
 
 <body>
@@ -28,16 +39,26 @@
                         <span class="paper-name"><span class="paper-attr">Name :</span> {{ paperData.paper_name }}</span>
                         <span class="paper-desc"><span class="paper-attr">Description :</span> {{ paperData.paper_desc
                             }}</span>
-                        <span class="paper-uploadby"><span class="paper-attr">Uploaded By :</span> {{
-                            paperData.paper_uploadedby }}</span>
+                            <span class="paper-desc"><span class="paper-attr">Schedule Time :</span> {{ paperData.paper_schedule_time.strftime('%Y-%m-%d %I:%M:%S %p')
+                            }}</span>
+                            <span class="paper-desc"><span class="paper-attr">Expiry Time :</span> {{ paperData.paper_expiry_time.strftime('%Y-%m-%d %I:%M:%S %p')
+                            }}</span>
+                        {% if not isWithinTimeBool %}
+                        <span class="paper-desc"><span class="paper-attr">Paper Will Be Available On {{ paperData.paper_schedule_time.strftime('%Y-%m-%d %I:%M:%S %p') }}</span>
+                        {% else %}
+                        <span class="paper-desc"><span class="paper-attr">PDF Password :</span> {{ paperData.paper_password
+                        }}</span>
+                        <a href="{{ url_for('static', filename=paperData.paper_path) }}" download="paper.pdf" class="download-link">Download Paper</a>
+                        {% endif %}
                     </div>
                     <div class="paper-view">
-                        <!-- <a href="/paper/view?id={{ paper.paper_id }}">View Paper</a> -->
+
                     </div>
                 </div>
                
             </div>
         </div>
+        {% endif %}
 
         
 

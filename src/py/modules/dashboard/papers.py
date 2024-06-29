@@ -12,15 +12,12 @@ def paperView():
     activeUserData = session.get('activeUserData')
     if request.method == 'GET':
         if request.args.get('id') and doesUserHasAccess(activeUserData['id'],request.args.get('id')):
-            if(type(getPaperData(request.args.get('id'))) != str):
-                paperData = getPaperData(request.args.get('id'))
-            else:
-                paperData = getPaperData(request.args.get('id'))
+                paperData,isWithinTimeBool = getPaperData(request.args.get('id'))
         else:
             return redirect(url_for('dashboard'))
 
 
-    return render_template('Dashboard/paperView.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'],role=activeUserData['role'],lastlogin=activeUserData['lastlogin'], paperData = paperData)
+    return render_template('Dashboard/paperView.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'],role=activeUserData['role'],lastlogin=activeUserData['lastlogin'], paperData = paperData,isWithinTimeBool=isWithinTimeBool)
 
 def doesUserHasAccess(userID,paperID):
     try:
@@ -47,9 +44,9 @@ def getPaperData(id):
         if result:
             paper = Paper(*result)
             if isWithinSchedule(paper.paper_schedule_time,paper.paper_expiry_time):
-                return paper
+                return paper,True
             else:
-                return f"The paper will be availiable on {paper.paper_schedule_time.strftime('%d-%m-%Y  at  %H:%M %p')}"
+                return paper,False
         return None
     except Exception as e:
         print(e)
