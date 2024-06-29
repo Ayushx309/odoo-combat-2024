@@ -1,6 +1,6 @@
 # Secure Examination Paper Distribution System
 
-## odoo combat 2024 Hackathon
+## odoo combat 2024 Hackathon (Built-in 12 hrs)
 
 This project offers a secure and reliable platform for distributing examination papers, guaranteeing the integrity and confidentiality of exams.
 
