@@ -1,0 +1,31 @@
+</section>
+</main>
+
+<!-- Main Js-->
+<script src="{{url_for('static',filename='js/dashboard/main.js')}}"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+
+<script>
+    tippy('#profile-pic', {
+        content: `<div class="profile">
+    <div class="banner">
+        <img src="{{ url_for('static', filename='assets/images/banner.gif') }}" />
+        </div>
+    <img src="{{ url_for('static', filename='assets/images/default.jpg') }}" alt="pfp" class="profile_img">
+    <div class="info">
+        <div class="username">@{{userName}}</div>
+        <div class="display_name">{{displayName}}</div>
+        <div class="buttons"> 
+            <a href="/logout" class="logout"><i class="fi fi-br-power popup_icon"></i><span>Logout</span></a>
+        </div>
+    </div>
+</div>`,
+        animation: 'scale-subtle',
+        trigger: 'mouseenter',
+        interactive: true,
+        allowHTML: true,
+        theme: 'light',
+        placement: 'bottom',
+    });
+</script>

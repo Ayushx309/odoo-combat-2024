@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% include "Dashboard/mainStyles.html" %}
+</head>
+
+<body>
+    {% include "Dashboard/mainPartOne.html" %}
+
+</div>
+
+
+    {% include "Dashboard/mainPartTwo.html" %}
+    <script>
+        window.onload = function() {
+            function addActiveClassToAnchor(id) {
+                var anchor = document.getElementById(id);
+                if (anchor) {
+                    anchor.classList.add('active');
+                } else {
+                    console.error("Anchor with ID '" + id + "' not found.");
+                }
+            }
+            addActiveClassToAnchor('home_active');
+        };
+    </script>
+</body>
+</html>

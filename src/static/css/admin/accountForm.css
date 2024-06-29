@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+:root {
+  --header-height: 3.5rem;
+  --nav-width: 219px;
+
+  /*  Colors  */
+  --first-color: #2c83e8;
+  --first-color-light: #f5f9fd;
+  --title-color: #19181B;
+  --text-color: #58555E;
+  --text-color-light: #A5A1AA;
+  --body-color: #f5f9fd;
+  --container-color: #FFFFFF;
+
+  /*  Font and typography  */
+  --body-font: 'Poppins', sans-serif;
+  --normal-font-size: .938rem;
+  --small-font-size: .75rem;
+  --smaller-font-size: .75rem;
+  --big-font-size: 1.1rem;
+  /*  Font weight  */
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*  z index  */
+  --z-fixed: 100;
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+.content-container {
+  padding: 1rem;
+  overflow: auto;
+}
+
+.form-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-category-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+
+.title-key-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#company_key {
+  padding: .40rem .75rem;
+  background-color: var(--first-color-light);
+  border: 1px solid var(--text-color);
+  border-radius: .25rem;
+  font-weight: bold;
+}
+
+#company_key::before {
+  content: 'Key : ';
+}
+
+.form-upload-category {
+  border: 2px dashed var(--text-color);
+  border-radius: .3rem;
+  padding: 1rem;
+}
+
+.form-category-title {
+  font-size: var(--big-font-size);
+  font-weight: bolder;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .4rem;
+}
+
+.form-category-input-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: center;
+
+  padding: .3rem;
+  gap: 1rem;
+}
+
+.form-category-input {
+  display: flex;
+  flex-direction: column;
+  width: 18rem;
+  gap: .3rem;
+}
+
+.form-input-label-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: .3rem;
+}
+
+.form-input-label-container i {
+  display: flex;
+  align-items: center;
+}
+
+.form-input-label {
+  font-weight: 500;
+}
+
+.form-input-styling {
+  display: flex;
+  padding: .40rem .75rem;
+  background-color: var(--first-color-light);
+  border: 1px solid var(--text-color);
+  border-radius: .25rem;
+}
+
+.form_input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: var(--first-color-light);
+  padding: .3rem;
+}
+
+.form_textarea {
+  height: 1.6rem;
+  min-height: 1.6rem;
+  max-height: 6rem;
+}
+
+.form_select {
+  border: none;
+  outline: none;
+}
+
+.form_input::placeholder {
+  font-family: var(--body-font);
+  color: var(--text-color);
+}
+
+
+.form-create-input {
+  display: flex;
+  padding: .4rem;
+  flex-direction: row-reverse;
+
+}
+
+.form-btn {
+  width: 200px;
+  padding: 10px 15px;
+  font-size: 17px;
+  margin: 8px 0;
+  background: #eee;
+  border-radius: 5px;
+  background: #323232;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.form-btn:hover {
+  background: #505050;
+  color: #fff;
+}
+
+.form-input-required-icon {
+  color: red;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  appearance: none;
+  -moz-appearance: textfield;
+}
+
+.file-size-warning{
+  color: var(--text-color);
+  opacity: 60%;
+  font-size: var(--smaller-font-size);
+}
+#create:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+@media screen and (max-width: 320px) {
+  .form-category-title {
+    font-size: var(--normal-font-size);
+  }
+
+  .form-input-label {
+    font-size: var(--small-font-size);
+  }
+
+  #company_key {
+    font-size: var(--small-font-size);
+  }
+
+
+}
+
+@media screen and (max-width: 377px) {
+  .title-key-container {
+    gap: .5rem;
+  }
+}
+
+@media screen and (max-width: 665px) {
+  .form-category-input {
+    width: 11rem;
+  }
+
+  .form-create-input {
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .form-category-input {
+    width: 15rem;
+  }
+}

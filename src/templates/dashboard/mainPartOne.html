@@ -1,0 +1,78 @@
+    <!-- Header -->
+
+    <header class="header">
+        <div class="header_container">
+            <img src="{{ url_for('static', filename='assets/images/default.jpg') }}" alt="pfp" class="header_img" id="profile-pic">
+
+            <a href="#" class="header_logo">Secure Paper Distribution System</a>
+            <div class="header_toggle">
+                <i class="bx bx-menu" id="header-toggle"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Header -->
+
+
+    <!-- Nav -->
+
+    <div class="nav" id="navbar">
+        <nav class="nav_container">
+            <div>
+                <a href="#" class="nav_link nav_logo">
+                    <img src="{{ url_for('static', filename='assets/icons/exam.gif') }}" alt="building" class="nav_icon">
+                    <span class="nav_logo_name">SPDS</span>
+                </a>
+
+                <div class="nav_list">
+                    <div class="nav_items">
+                        <!-- <h3 class="nav_subtitle"></h3> -->
+
+                        <!-- single menu -->
+
+                        <!-- active class here -->
+                        <a href="/dashboard" class="nav_link" id="home_active">  
+                            <i class='bx bx-home nav_icon'></i>
+                            <span class="nav_name">Home</span>
+                        </a>
+
+                        <a href="/upload" class="nav_link" id="upload_active">  
+                            <i class="fi fi-sr-file-upload nav_icon_fi"></i>
+                            <span class="nav_name">Upload Papers</span>
+                        </a>
+                        <!-- single menu -->
+
+
+                        <!-- Sub Menu -->
+
+                        <h3 class="nav_subtitle">Administration</h3>
+
+                        <a href="/admin/accounts/view" class="nav_link" id="accounts_active">  
+                            <i class='bx bxs-user-account nav_icon'></i>
+                            <span class="nav_name">Accounts</span>
+                        </a>
+
+                        <a href="/admin/auditLogs" class="nav_link" id="logs_active">  
+                            <i class='bx bxs-file nav_icon'></i>
+                            <span class="nav_name">Audit Logs</span>
+                        </a>
+
+                        <!-- Sub Menu -->
+
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="/logout" class="nav_link nav_logout">
+                <i class='bx bx-log-out nav_icon'></i>
+                <span class="nav_name">Log Out</span>
+            </a>
+
+        </nav>
+    </div>
+
+    <!-- Main content  -->
+
+    <main>
+        <section>

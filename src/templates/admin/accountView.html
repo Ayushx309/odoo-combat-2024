@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts</title>
+    {% include "Dashboard/mainStyles.html" %}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/admin/accountCommon.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/admin/accountView.css')}}">
+</head>
+
+<body>
+    {% include "Dashboard/mainPartOne.html" %}
+    <div class="page-title-container">
+        <span class="page-title">View Accounts</span>
+    </div>
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="tab-menu-container">
+            <a href="/admin/accounts/view" class="tab_menu_btn active_tab">View Accounts</a>
+            <a href="/admin/accounts/create" class="tab_menu_btn ">Create Account</a>
+        </div>
+        <div class="content-container">
+            <div class="company-search-container">
+                {% include "Dashboard/mainSearch.html" %}
+            </div>
+
+            <div id="companyTableContainer">
+                <table id="companyTable">
+
+                <tbody id="companyList">
+                </tbody>
+                </table>
+            </div>
+
+            <div id="pagination" class="pagination"></div>
+
+
+            <!-- Modals -->
+            <dialog id="modal" class="modal">
+                
+            </dialog>
+
+        </div>
+    </div>
+    <!-- Main Content -->
+    {% include "Dashboard/mainPartTwo.html" %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        window.onload = function () {
+            function addActiveClassToAnchor(id) {
+                var anchor = document.getElementById(id);
+                if (anchor) {
+                    anchor.classList.add('active');
+                } else {
+                    console.error("Anchor with ID '" + id + "' not found.");
+                }
+            }
+            addActiveClassToAnchor('accounts_active');
+        };
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.contextMenu.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-contextmenu/2.7.1/jquery.ui.position.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="{{url_for('static',filename='Js/Admin/companyView.js')}}"></script>
+</body>
+
+</html>

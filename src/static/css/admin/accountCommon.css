@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+:root {
+    --header-height: 3.5rem;
+    --nav-width: 219px;
+  
+    /*  Colors  */
+    --first-color: #2c83e8;
+    --first-color-light: #f5f9fd;
+    --title-color: #19181B;
+    --text-color: #58555E;
+    --text-color-light: #A5A1AA;
+    --body-color: #f5f9fd;
+    --container-color: #FFFFFF;
+  
+    /*  Font and typography  */
+    --body-font: 'Poppins', sans-serif;
+    --normal-font-size: .938rem;
+    --small-font-size: .75rem;
+    --smaller-font-size: .75rem;
+  
+    /*  Font weight  */
+    --font-medium: 500;
+    --font-semi-bold: 600;
+  
+    /*  z index  */
+    --z-fixed: 100;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    :root {
+      --normal-font-size: 1rem;
+      --small-font-size: .875rem;
+      --smaller-font-size: .813rem;
+    }
+  }
+
+/* *{
+    border: 1px dotted red;
+} */
+body{
+    width: auto;
+    height: 100vh;
+    
+}
+
+main,section{
+    height: 100%;
+    width: 100%;
+}
+
+.main-container{
+    height: 100%;
+    width: 100%;   
+}
+.tab-menu-container{
+    height: auto;
+    padding-top: 2.5rem;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    gap: .4rem;
+}
+.tab_menu_btn{
+    background: var(--container-color);
+    border: none;
+    border-top: 3px solid var(--text-color);
+    padding: 0.5rem;
+    font-family: var(--body-font);
+    box-shadow: rgba(0, 0, 0, 0.12) 3px -3px 4px;
+}
+
+.content-container{
+    width: 100%;
+    height: 80%;
+    background-color: var(--container-color);
+}
+.tab-menu-container a{
+    text-decoration: none;
+    color: var(--text-color);
+}
+.tab-menu-container .active_tab{
+    border: none;
+    border-top: 3px solid var(--first-color);
+    color: var(--first-color);
+    font-weight: bold;
+}
+.page-title{
+    font-weight: bolder;
+    font-size: 1.65rem;
+}
+@media screen and (max-width: 320px) {
+    .tab-menu-container{
+        padding-top: 2.5rem;
+    }
+    .tab_menu_btn{
+        font-size: var(--small-font-size);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .tab-menu-container{
+        padding-top: 2.5rem;
+    }
+  }

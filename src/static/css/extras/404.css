@@ -1,0 +1,77 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0) rotate(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-10px) rotate(-5deg);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translateX(10px) rotate(5deg);
+    }
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    animation: fadeIn 1s ease-in-out;
+}
+h1 {
+    font-size: 10vw;
+    margin: 0;
+    animation: slideUp 1s ease-in-out, shake 1s ease-in-out 1s;
+}
+svg {
+    width: 80%;
+    max-width: 674px;
+    height: auto;
+    animation: scaleUp 1s ease-in-out;
+}
+p {
+    font-size: 5vw;
+    margin-top: 20px;
+    color: #252525;
+}
+@media (min-width: 600px) {
+    h1 {
+        font-size: 4rem;
+    }
+    p {
+        font-size: 1.5rem;
+    }
+}

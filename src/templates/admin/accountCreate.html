@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/Admin/accountCommon.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/Admin/accountForm.css')}}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css">
+    {% include "Dashboard/mainStyles.html" %}
+</head>
+
+<body>
+    {% include "Dashboard/mainPartOne.html" %}
+    <!-- Form Title -->
+    <div class="page-title-container">
+        <span class="page-title">Create new account</span>
+    </div>
+    <!-- Form Title -->
+    <!-- Main Content -->
+    <div class="main-container">
+        <div class="tab-menu-container">
+            <a href="/admin/accounts/view" class="tab_menu_btn ">View Accounts</a>
+            <a href="/admin/accounts/create" class="tab_menu_btn active_tab">Create Account</a>
+        </div>
+        <div class="content-container">
+            <form class="form-container" method="post">
+                <!-- Category -->
+                <div class="form-category-container">
+                    <span class="form-category-title">Account Details</span>
+                    <div class="form-category-input-container">
+
+                        <div class="form-category-input">
+                            <span class="form-input-label">Username</span>
+                            <div class="form-input-styling" id="username-styling">
+                                <input type="text" id="user_name" name="user_name" class="form_input"
+                                    autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-category-input">
+                            <span class="form-input-label">Display Name</span>
+                            <div class="form-input-styling">
+                                <input type="text" name="user_dname" class="form_input" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-category-input">
+                            <span class="form-input-label">Password</span>
+                            <div class="form-input-styling">
+                                <input type="password" name="user_password" class="form_input" autocomplete="off" />
+                            </div>
+                        </div>
+                        <div class="form-category-input">
+                            <span class="form-input-label">User Role</span>
+                            <div class="form-input-styling">
+                                <select name="user_role" class="form_input form_select">
+                                    <option value="not_defined" selected disabled>Select user role</option>
+                                    <option value="administrator">Administrator</option>
+                                    <option value="examiners">Examiners</option>
+                                    <option value="invigilators">Invigilators</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Category -->
+                <div class="form-create-input">
+                    <input type="submit" name="Create" id="create" value="Create" class="form-btn" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Main Content -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% include "Dashboard/mainPartTwo.html" %}
+    {% if message %}
+    {{ message | safe }}
+    {% endif %}
+    <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+        window.onload = function () {
+            function addActiveClassToAnchor(id) {
+                var anchor = document.getElementById(id);
+                if (anchor) {
+                    anchor.classList.add('active');
+                } else {
+                    console.error("Anchor with ID '" + id + "' not found.");
+                }
+            }
+            addActiveClassToAnchor('accounts_active');
+        };
+
+        // sweetalert
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let formFields = document.querySelectorAll('.form_input');
+            let formChanged = false;
+            let formSubmitted = false;
+
+            formFields.forEach((field) => {
+                field.addEventListener('input', () => {
+                    formChanged = true;
+                });
+            });
+
+            window.addEventListener('beforeunload', (e) => {
+                if (formChanged && !formSubmitted) {
+                    e.preventDefault();
+                    e.returnValue = '';
+                }
+            });
+
+            document.querySelector('form').addEventListener('submit', (e) => {
+                if (!formSubmitted) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "Do you really want to create an account?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, create',
+                        cancelButtonText: 'No, cancel'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            formSubmitted = true;
+                            e.target.submit();
+                        }
+                    });
+                }
+            });
+
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    if (formChanged && !formSubmitted) {
+                        e.preventDefault();
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You have unsaved changes. Do you really want to leave?",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, leave',
+                            cancelButtonText: 'No, stay'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.removeEventListener('beforeunload', () => { });
+                                window.location.href = e.target.href;
+                            }
+                        });
+                    }
+                });
+            });
+
+            window.addEventListener('popstate', (e) => {
+                if (formChanged && !formSubmitted) {
+                    e.preventDefault();
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You have unsaved changes. Do you really want to leave?",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, leave',
+                        cancelButtonText: 'No, stay'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.removeEventListener('beforeunload', () => { });
+                            window.location.href = e.state ? e.state.url : window.location.href;
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#user_name').on('change', function () {
+                var username = $(this).val();
+
+                $.ajax({
+                    url: '/api/checkUsernameAvailability',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ username: username }),
+                    success: function (response) {
+                        if (response.exists) {
+                            $('#username-styling').attr('style', 'border: 2px solid red');
+                            $('#create').prop('disabled',true);
+                            iziToast.warning({
+                                title: 'Warning',
+                                message: `Username '${username}' not available`,
+                                position: 'topRight',
+                            });
+
+                        } else {
+                            $('#username-styling').attr('style', 'border: 2px solid green');
+                            $('#create').prop('disabled',false);
+                        }
+                    },
+                    error: function (error) {
+                        $('#result').text('Error checking user');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

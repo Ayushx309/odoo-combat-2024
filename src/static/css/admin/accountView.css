@@ -1,0 +1,466 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+:root {
+  --header-height: 3.5rem;
+  --nav-width: 219px;
+
+  /*  Colors  */
+  --first-color: #2c83e8;
+  --first-color-light: #f5f9fd;
+  --title-color: #19181B;
+  --text-color: #58555E;
+  --text-color-light: #A5A1AA;
+  --body-color: #f5f9fd;
+  --container-color: #FFFFFF;
+
+  /*  Font and typography  */
+  --body-font: 'Poppins', sans-serif;
+  --normal-font-size: .938rem;
+  --small-font-size: .75rem;
+  --smaller-font-size: .75rem;
+  --smallest-font-size: .60rem;
+
+  /*  Font weight  */
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*  z index  */
+  --z-fixed: 100;
+}
+
+@media screen and (min-width: 1024px) {
+  :root {
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+.company-search-container {
+  display: flex;
+  flex-direction: row-reverse;
+  padding: 1rem;
+}
+
+.header_search {
+  border: 1px solid rgba(0, 0, 0, 0.229);
+}
+
+/* Table Css */
+
+#companyTableContainer {
+  margin: 20px auto;
+  width: 90%;
+  overflow-x: auto;
+}
+
+#companyTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 1rem;
+}
+
+#companyTable th,
+#companyTable td {
+  padding: 10px;
+  /* border: 1px solid #ccc; */
+}
+
+#companyTable th {
+  background-color: #f0f0f0;
+}
+
+tbody {
+  gap: 20px;
+}
+
+#companyTable tbody tr {
+  background-color: var(--body-color);
+  transition: all .3s ease-in-out;
+  border: 10px solid var(--text-color);
+  border-radius: .6rem;
+  text-wrap: nowrap;
+}
+
+#companyTable tbody tr:hover {
+  background-color: #deeffe;
+}
+
+#pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+.pagination_button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid #007bff;
+  background-color: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  margin: 5px 5px;
+  border-radius: 5px;
+}
+
+.pagination_button.active {
+  background-color: var(--first-color);
+  color: #fff;
+}
+
+.table-img-name-key-main-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.table-img-name-key-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: auto;
+  gap: 1rem;
+}
+
+.table-img-container {
+  display: flex;
+  align-items: center;
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+}
+
+.table-img {
+  min-width: 2.5rem;
+  min-height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  max-width: 2.5rem;
+  max-height: 2.5rem;
+}
+
+.table-name-key-container {
+  display: flex;
+  flex-direction: column;
+}
+
+#table-name {
+  font-weight: bolder;
+}
+
+#table-key {
+  font-size: var(--small-font-size);
+  opacity: 75%;
+  font-weight: bold;
+}
+
+#table-three-dots {
+  cursor: pointer;
+}
+
+.mobile-three-dots {
+  display: none;
+}
+
+.context-menu-icon.context-menu-icon--fa5 i,
+.context-menu-icon.context-menu-icon--fa5 svg {
+  position: absolute;
+  top: 0.45em;
+  left: .5em;
+  color: #2980b9;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Modal */
+
+
+
+
+
+
+
+
+
+
+.modal {
+  min-height: 90vh;
+  width: 90vw;
+  border: 2px solid var(--text-color);
+  border-radius: .5rem;
+  /* background: var(--container-color); */
+  background-color: var(--body-color);
+  /* background: none; */
+  backdrop-filter: blur(10px);
+  padding: 0;
+  padding: 1.5rem;
+  font-size: var(--small-font-size);
+}
+
+.close-div {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.close-button {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.dialog-main-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid var(--text-color); */
+}
+
+.dialog-company-primary-container {
+  width: 30%;
+  /* background-color: var(--container-color); */
+  border-right: 1px solid var(--text-color);
+}
+
+.dialog-company-secondary-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dialog-company-photo-name-key-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: .6rem;
+  gap: 1rem;
+}
+
+.dialog-company-photo-container {
+  min-height: 5.5rem;
+  min-width: 5.5rem;
+  max-height: 5.5rem;
+  max-width: 5.5rem;
+}
+
+.dialog-company-photo {
+  min-height: 5.5rem;
+  min-width: 5.5rem;
+  border-radius: 50%;
+  /* border: 1px solid black; */
+  object-fit: cover;
+  max-height: 5.5rem;
+  max-width: 5.5rem;
+  
+}
+
+.dialog-company-name-key-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dialog-company-name {
+  font-size: larger;
+  font-weight: bolder;
+}
+
+.dialog-company-key {
+  font-size: large;
+  font-weight: bold;
+  opacity: 75%;
+}
+
+.dialog-company-basics {
+  display: flex;
+  flex-direction: column;
+  text-wrap: wrap;
+  flex-wrap: wrap;
+  padding: .6rem;
+  gap: .5rem;
+}
+
+.dialog-titlenattr {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-titlenattr span:nth-child(1),
+.dialog-companydoc span:nth-child(1) {
+  font-weight: bolder;
+}
+
+.dialog-company-tax-info,
+.dialog-company-bank-info,
+.dialog-company-documents {
+  width: 100%;
+  height: fit-content;
+  padding: 1rem;
+  padding-left: 3rem;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.dialog-company-documents {
+  width: 100%;
+  padding: 1rem;
+  padding-left: 3rem;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.dialog-companydoc {
+  max-width: 40%;
+  max-height: calc(width);
+}
+
+.download-div {
+  display: flex;
+  justify-content: end;
+}
+
+#downloadButton{
+  border: 1px solid var(--text-color);
+  border-radius: .3rem;
+  outline: none;
+  cursor: pointer;
+  padding: .6rem;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  font-weight: bolder;
+  gap: .2rem;
+}
+
+#downloadButton i{
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 320px) {}
+
+@media screen and (max-width: 570px) {
+  .content-container {
+    font-size: var(--small-font-size);
+  }
+
+  td {
+    display: block;
+  }
+
+  #table-three-dots {
+    display: none;
+  }
+
+  .table-mobile-datacell::before {
+    content: attr(data-cell);
+    font-weight: bold;
+  }
+
+  .mobile-three-dots {
+    display: block;
+    cursor: pointer;
+  }
+
+  #companyTable tbody tr {
+    text-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .header_search {
+    width: 100%;
+  }
+
+  .modal {
+    font-size: var(--small-font-size);
+  }
+
+  .dialog-company-photo-container {
+    min-height: 5rem;
+    min-width: 5rem;
+    max-height: 5rem;
+    max-width: 5rem;
+  }
+
+  .dialog-company-photo {
+    min-height: 5rem;
+    min-width: 5rem;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .dialog-main-container {
+    flex-direction: column;
+  }
+
+  .dialog-company-primary-container {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--text-color);
+  }
+
+  .dialog-company-secondary-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    gap: 1rem;
+  }
+
+  .dialog-company-tax-info,
+  .dialog-company-bank-info,
+  .dialog-company-documents {
+    width: 100%;
+    height: fit-content;
+    padding: 1rem;
+    padding-left: 1rem;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .dialog-company-documents{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .dialog-companydoc {
+    max-width: 70%;
+    max-height: calc(width);
+  }
+  .download-div {
+    display: flex;
+    justify-content: center;
+  }
+}
