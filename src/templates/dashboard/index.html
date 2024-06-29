@@ -11,10 +11,12 @@
 <body>
     {% include "Dashboard/mainPartOne.html" %}
     <div class="main-container2">
+        {% if role=='administrator' or role=='examiner' %}
         <div class="upload-container">
             <span>Upload a paper</span>
             <a href="/upload">Upload</a>
         </div>
+        {% endif %}
         <div class="papers-main-container">
             <div class="paper-heading">
                 <span>View papers</span>
