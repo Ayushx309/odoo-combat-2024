@@ -60,7 +60,7 @@ def accountsEdit():
             """
           
         
-        return redirect(url_for('accountsView'))
+        return redirect(url_for('accountsEdit'))
     message = session.pop('message', None)
     return render_template('admin/accountEdit.html',userName = activeUserData['user_name'],displayName = activeUserData['display_name'],userData=userData,message=message,role=activeUserData['role'],lastlogin=activeUserData['lastlogin'])
 
