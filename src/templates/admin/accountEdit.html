@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit Account</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='css/admin/accountCommon.css')}}">
-    <link rel="stylesheet" href="{{url_for('static',filename='css/admin/accountForm.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/Admin/accountCommon.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='Css/Admin/accountForm.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/izitoast/dist/css/iziToast.min.css">
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/dist/tippy.css">
     <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale-subtle.css">
@@ -15,217 +15,60 @@
 
 <body>
     {% include "Dashboard/mainPartOne.html" %}
+    <!-- Form Title -->
+    <div class="page-title-container">
+        <span class="page-title">Edit account</span>
+    </div>
+    <!-- Form Title -->
     <!-- Main Content -->
     <div class="main-container">
         <div class="tab-menu-container">
-            <a href="/admin/accounts/view" class="tab_menu_btn active_tab">View Accounts</a>
-            <a href="/admin/accounts/create" class="tab_menu_btn ">Create Account</a>
+            <a href="/admin/accounts/view" class="tab_menu_btn ">View Accounts</a>
+            <a href="#" class="tab_menu_btn active_tab">Edit Account</a>
         </div>
         <div class="content-container">
-            <form class="form-container" method="post" enctype="multipart/form-data">
+            <form class="form-container" method="post">
                 <!-- Category -->
                 <div class="form-category-container">
-                    <div class="title-key-container">
-                        <span class="form-category-title">Company Basic Info</span>
-                        <span id="company_key">{{ companyData.company_key}}</span>
-                        <input type="hidden" name="companyKey" id="companyKey">
-                    </div>
+                    <span class="form-category-title">Account Details</span>
                     <div class="form-category-input-container">
 
                         <div class="form-category-input">
-                            <span class="form-input-label">Name <span class="form-input-required-icon">*</span></span>
-                            <div class="form-input-styling">
-                                <input type="text" name="company_name" id="company_name" class="form_input"
-                                    autocomplete="off" value="{{ companyData.company_name }}" required readonly/>
+                            <span class="form-input-label">Username</span>
+                            <div class="form-input-styling" id="username-styling">
+                                <input type="text" id="user_name" name="user_name" class="form_input" autocomplete="off"
+                                    value="{{ userData.user_name }}" required />
                             </div>
                         </div>
                         <div class="form-category-input">
-                            <span class="form-input-label">Phone <span class="form-input-required-icon">*</span></span>
+                            <span class="form-input-label">Display Name</span>
                             <div class="form-input-styling">
-                                <input type="number" name="company_phone" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_phone }}" required />
+                                <input type="text" name="user_dname" class="form_input" autocomplete="off" required value="{{ userData.user_dname }}"/>
                             </div>
                         </div>
                         <div class="form-category-input">
-                            <span class="form-input-label">Email <span class="form-input-required-icon">*</span></span>
+                            <span class="form-input-label">Password</span>
                             <div class="form-input-styling">
-                                <input type="email" name="company_email" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_email }}" required />
+                                <input type="password" name="user_password" class="form_input" autocomplete="off"
+                                    required />
                             </div>
                         </div>
                         <div class="form-category-input">
-                            <span class="form-input-label">Website <span
-                                    class="form-input-required-icon">*</span></span>
+                            <span class="form-input-label">User Role</span>
                             <div class="form-input-styling">
-                                <input type="url" name="company_website" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_website }}" required />
-                            </div>
-                        </div>
-                        <div class="form-category-input">
-                            <span class="form-input-label">Address <span
-                                    class="form-input-required-icon">*</span></span>
-                            <div class="form-input-styling">
-                                <textarea type="text" name="company_address" class="form_input form_textarea"
-                                    required> {{ companyData.company_address }} </textarea>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Category -->
-                <!-- Category -->
-                <div class="form-category-container">
-                    <span class="form-category-title">Company Tax Identification Numbers</span>
-                    <div class="form-category-input-container">
-
-                        <div class="form-category-input">
-                            <span class="form-input-label">GST Number</span>
-                            <div class="form-input-styling">
-                                <input type="text" name="company_gst" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_gst_num }}" />
-                            </div>
-                        </div>
-                        <div class="form-category-input">
-                            <span class="form-input-label">UIN Number</span>
-                            <div class="form-input-styling">
-                                <input type="text" name="company_uin" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_uin_num }}" />
-                            </div>
-                        </div>
-                        <div class="form-category-input">
-                            <span class="form-input-label">TDS Number</span>
-                            <div class="form-input-styling">
-                                <input type="text" name="company_tds" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_tds_num }}" />
-                            </div>
-                        </div>
-                        <div class="form-category-input">
-                            <span class="form-input-label">PAN Number</span>
-                            <div class="form-input-styling">
-                                <input type="text" name="company_pan" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_pan_num }}" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Category -->
-                <!-- Category -->
-                <div class="form-category-container">
-                    <span class="form-category-title">Company Bank Account Details</span>
-                    <div class="form-category-input-container">
-
-                        <div class="form-category-input">
-                            <span class="form-input-label">Bank Name</span>
-                            <div class="form-input-styling">
-                                <input type="text" name="company_bank_name" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_bank_name }}" />
-                            </div>
-                        </div>
-                        <div class="form-category-input">
-                            <span class="form-input-label">Bank A/C Number</span>
-                            <div class="form-input-styling">
-                                <input type="number" name="company_bank_number" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_bank_acc_num }}" />
-                            </div>
-                        </div>
-                        <div class="form-category-input">
-                            <span class="form-input-label">Bank A/C Type</span>
-                            <div class="form-input-styling">
-                                <select name="company_bank_type" class="form_input form_select">
-                                    <option value="not_defined" {% if companyData.company_bank_acc_type=='not_defined'
-                                        %}selected{% endif %} disabled>Select bank a/c type</option>
-                                    <option value="savings" {% if companyData.company_bank_acc_type=='savings'
-                                        %}selected{% endif %}>Savings A/C</option>
-                                    <option value="current" {% if companyData.company_bank_acc_type=='current'
-                                        %}selected{% endif %}>Current A/C</option>
-                                    <option value="rera" {% if companyData.company_bank_acc_type=='rera' %}selected{%
-                                        endif %}>Rera A/C</option>
-                                    <option value="overdraft" {% if companyData.company_bank_acc_type=='overdraft'
-                                        %}selected{% endif %}>Overdraft A/C</option>
-                                    <option value="term_loan" {% if companyData.company_bank_acc_type=='term_loan'
-                                        %}selected{% endif %}>Term Loan A/C</option>
+                                <select id="userRole" name="user_role" class="form_input form_select" required>
+                                    <option value="administrator" {% if userData.user_role == 'administrator' %} selected {% endif %}>Administrator</option>
+                                    <option value="examiner" {% if userData.user_role == 'examiner' %} selected {% endif %}>Examiners</option>
+                                    <option value="invigilator" {% if userData.user_role == 'invigilator' %} selected {% endif %}>Invigilators</option>
                                 </select>
-                            </div>
-                        </div>
-                        <div class="form-category-input">
-                            <span class="form-input-label">Bank IFSC Code</span>
-                            <div class="form-input-styling">
-                                <input type="text" name="company_bank_ifsc" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_bank_ifsc_code }}" />
-                            </div>
-                        </div>
-                        <div class="form-category-input">
-                            <span class="form-input-label">Bank Branch</span>
-                            <div class="form-input-styling">
-                                <input type="text" name="company_bank_branch" class="form_input" autocomplete="off"
-                                    value="{{ companyData.company_bank_branch }}" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Category -->
-                <!-- Category -->
-                <div class="form-category-container form-upload-category">
-                    <span class="form-category-title">Company Documents Upload <span class="file-size-warning">(Maximum
-                            Allowed File Size Is 2MB.)</span></span>
-                    <div class="form-category-input-container">
-
-                        <div class="form-category-input">
-                            <span class="form-input-label">Logo</span>
-                            <div class="form-input-styling">
-                                <input type="file" name="company_logo" class="form_input" id="file_logo"
-                                    onchange="checkFileSize('file_logo')" />
-                            </div>
-
-                            {% if companyData.company_logo %}
-                            <img id="img_logo" src="{{ url_for('static', filename=companyData.company_logo) }}"
-                                alt="Company Logo">
-                            {% else %}
-                            <img id="img_logo" src="{{ url_for('static', filename='Assets/Images/not_set.png') }}" alt="Not Set">
-                            {% endif %}
-
-                        </div>
-
-                        <div class="form-category-input">
-                            <div class="form-input-label-container">
-                                <span class="form-input-label">Stamp</span><i class="fi fi-sr-interrogation"
-                                    id="stamp_tooltip"></i>
-                            </div>
-                            <div class="form-input-styling">
-                                <input type="file" name="company_stamp" class="form_input" id="file_stamp"
-                                    onchange="checkFileSize('file_stamp')" />
-                            </div>
-                            {% if companyData.company_stamp_photo %}
-                            <img id="img_stamp" src="{{ url_for('static', filename=companyData.company_stamp_photo) }}"
-                                alt="Company Stamp">
-                            {% else %}
-                            <img id="img_stamp" src="{{ url_for('static', filename='Assets/Images/not_set.png') }}" alt="Not Set">
-                            {% endif %}
-                        </div>
-
-                        <div class="form-category-input">
-                            <div class="form-input-label-container">
-                                <span class="form-input-label">Signature</span><i class="fi fi-sr-interrogation"
-                                    id="sign_tooltip"></i>
-                            </div>
-                            <div class="form-input-styling">
-                                <input type="file" name="company_sign" class="form_input" id="file_sign"
-                                    onchange="checkFileSize('file_sign')" />
-                            </div>
-                            {% if companyData.company_signature_photo %}
-                            <img id="img_sign"
-                                src="{{ url_for('static', filename=companyData.company_signature_photo) }}"
-                                alt="Company Signature">
-                            {% else %}
-                            <img id="img_sign" src="{{ url_for('static', filename='Assets/Images/not_set.png') }}" alt="Not Set">
-                            {% endif %}
+                            </div>                            
                         </div>
 
                     </div>
-
                 </div>
                 <!-- Category -->
                 <div class="form-create-input">
-                    <input type="submit" name="Edit" value="Edit" class="form-btn" />
+                    <input type="submit" name="Create" id="create" value="Edit" class="form-btn" />
                 </div>
             </form>
         </div>
@@ -239,7 +82,6 @@
     {% if message %}
     {{ message | safe }}
     {% endif %}
-    <script src="{{url_for('static',filename='Js/Admin/companyCreate.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
@@ -255,84 +97,6 @@
             }
             addActiveClassToAnchor('accounts_active');
         };
-
-        // file sizing
-
-        function checkFileSize(inputId) {
-            const fileInput = document.getElementById(inputId);
-            const maxSizeInBytes = 2 * 1024 * 1024; // 2 MB
-
-            if (fileInput.files.length > 0) {
-                const fileSize = fileInput.files[0].size;
-                if (fileSize > maxSizeInBytes) {
-                    iziToast.error({
-                        title: 'Error',
-                        message: 'Maximum Allowed File Size Is 2MB.',
-                        position: 'topRight',
-                    });
-                    fileInput.value = '';
-                }
-            }
-        }
-
-
-
-        // live photos upload preview
-
-        const allowedExtensions = ['jpg', 'jpeg', 'png', 'heic'];
-
-        document.getElementById('file_logo').addEventListener('change', function (event) {
-            handleFileUpload(event, 'img_logo');
-        });
-
-        document.getElementById('file_stamp').addEventListener('change', function (event) {
-            handleFileUpload(event, 'img_stamp');
-        });
-
-        document.getElementById('file_sign').addEventListener('change', function (event) {
-            handleFileUpload(event, 'img_sign');
-        });
-
-        function handleFileUpload(event, imgElementId) {
-            const file = event.target.files[0];
-            if (file) {
-                const fileExtension = file.name.split('.').pop().toLowerCase();
-                if (!allowedExtensions.includes(fileExtension)) {
-                    iziToast.error({
-                        title: 'Error',
-                        message: 'Invalid file type. Please upload an image file (.jpg, .jpeg, .png, .heic).',
-                        position: 'topRight',
-                    });
-
-                    event.target.value = '';
-                    return;
-                }
-                displayImage(file, imgElementId);
-            }
-        }
-
-        function displayImage(file, imgElementId) {
-            const reader = new FileReader();
-            reader.onload = function () {
-                const imgElement = document.getElementById(imgElementId);
-                imgElement.src = reader.result;
-            }
-            reader.readAsDataURL(file);
-        }
-
-
-        // tippy.js tooltips
-
-        tippy('#stamp_tooltip', {
-            content: 'Upload a clear stamp image with a transparent or white background only.',
-            animation: 'scale-subtle'
-        });
-        tippy('#sign_tooltip', {
-            content: 'Upload a clear signature image with a transparent or white background only.',
-            animation: 'scale-subtle'
-        });
-
-
 
         // sweetalert
 
@@ -350,7 +114,7 @@
             window.addEventListener('beforeunload', (e) => {
                 if (formChanged && !formSubmitted) {
                     e.preventDefault();
-                    e.returnValue = '';  // This is required for some browsers.
+                    e.returnValue = '';
                 }
             });
 
@@ -359,7 +123,7 @@
                     e.preventDefault();
                     Swal.fire({
                         title: 'Are you sure?',
-                        text: "Do you really want to edit company data?",
+                        text: "Do you really want to edit this account?",
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonText: 'Yes, edit',
@@ -407,15 +171,50 @@
                     }).then((result) => {
                         if (result.isConfirmed) {
                             window.removeEventListener('beforeunload', () => { });
-                            window.history.go(e.state);
+                            window.location.href = e.state ? e.state.url : window.location.href;
                         }
                     });
                 }
             });
         });
+
+   
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#user_name').on('change', function () {
+                var username = $(this).val();
 
+                $.ajax({
+                    url: '/api/checkUsernameAvailability',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ username: username }),
+                    success: function (response) {
+                        if (response.exists) {
+                            $('#username-styling').attr('style', 'border: 2px solid red');
+                            $('#create').prop('disabled', true);
+                            iziToast.warning({
+                                title: 'Warning',
+                                message: `Username '${username}' not available`,
+                                position: 'topRight',
+                            });
 
+                        } else if (username === "") {
+
+                        }
+                        else {
+                            $('#username-styling').attr('style', 'border: 2px solid green');
+                            $('#create').prop('disabled', false);
+                        }
+                    },
+                    error: function (error) {
+                        $('#result').text('Error checking user');
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

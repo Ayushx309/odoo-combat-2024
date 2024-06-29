@@ -1,11 +1,9 @@
-
-// scripts.js
 const companyList = document.getElementById('companyList');
 const pagination = document.getElementById('pagination');
 const searchInput = document.getElementById('searchInput');
 const searchButton = document.getElementById('searchButton');
 
-let accountData = []; 
+let accountData = [];
 let currentPage = 1;
 const itemsPerPage = 4;
 
@@ -19,26 +17,23 @@ function fetchAllAccounts() {
     })
         .then(response => response.json())
         .then(data => {
-            accountData = data.accounts; 
+            accountData = data.accounts;
             console.log(accountData)
-            handleSearch(); 
+            handleSearch();
         })
         .catch(error => console.error('Error fetching accounts:', error));
 }
 
-// Function to handle search
+
 function handleSearch() {
     const searchTerm = searchInput.value.trim().toLowerCase();
-
-    // Filter data based on search term
     const filteredAccounts = accountData.filter(Account =>
         Account.username.toLowerCase().includes(searchTerm)
     );
 
-    displayCompanies(filteredAccounts); // Call displayCompanies with filtered data
+    displayCompanies(filteredAccounts);
 }
 
-// Function to display companies for a given page
 function displayCompanies(accounts) {
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
@@ -62,7 +57,7 @@ function displayCompanies(accounts) {
             </div>
                 
             <div class="mobile-three-dots">
-                <i data-id="${account.id}" class="fi fi-bs-menu-dots-vertical"></i>
+                <i data-id="${account.id}" data-uname="${account.username}" class="fi fi-bs-menu-dots-vertical"></i>
             </div>
 
 
@@ -71,7 +66,7 @@ function displayCompanies(accounts) {
         <td class="table-mobile-datacell" data-cell='role : '>${account.role}</td>
         <td class="table-mobile-datacell" data-cell='last_login : '>${account.last_login}</td>
         <td class="table-mobile-datacell" data-cell='creation : '>${account.creation}</td>
-        <td id="table-three-dots"><i ata-id="${account.id}" class="fi fi-bs-menu-dots-vertical"></i></td>
+        <td id="table-three-dots"><i data-id="${account.id}" data-uname="${account.username}" class="fi fi-bs-menu-dots-vertical"></i></td>
         `;
 
         companyList.appendChild(accountRow);
@@ -79,10 +74,6 @@ function displayCompanies(accounts) {
     renderPagination(accounts.length);
 }
 
-
-
-
-// Function to render pagination
 function renderPagination(totalItems) {
     const totalPages = Math.ceil(totalItems / itemsPerPage);
     pagination.innerHTML = '';
@@ -102,168 +93,9 @@ function renderPagination(totalItems) {
     }
 }
 
-// Event listeners
 searchInput.addEventListener('input', handleSearch);
 searchButton.addEventListener('click', handleSearch);
-
-// Initial fetch of all accounts
 fetchAllAccounts();
-
-function openWindow(url, width, height) {
-    // Calculate the left and top position to center the window
-    const left = (window.innerWidth - width) / 2;
-    const top = (window.innerHeight - height) / 2;
-
-    // Open the new window with specified URL, size, and position
-    window.open(url, '_blank', `width=${width}, height=${height}, left=${left}, top=${top}`);
-}
-
-// 
-// 
-// 
-// context menu
-// 
-// 
-// 
-
-function fetchCompanyData(company_key, company_id) {
-    const company = accountData.find(company => company.company_key === company_key) || null;
-
-    if (company.company_bank_acc_type === "not_defined") {
-        company.company_bank_acc_type = null;
-    }
-
-    const modalContent = document.getElementById("modal");
-    modalContent.innerHTML = `
-        <div class="close-div">
-            <i class="fi fi-rs-circle-xmark close-button"></i>
-        </div>
-        <div class="dialog-main-container">
-            <div class="dialog-company-primary-container">
-                <div class="dialog-company-photo-name-key-container">
-                    <div class="dialog-company-photo-container">
-                        <img src="/static/${company.company_logo || "Assets/Images/default_company.jpg"}" class="dialog-company-photo"/>
-                    </div>
-                    <div class="dialog-company-name-key-container">
-                        <span class="dialog-company-name">${company.company_name}</span>
-                        <span class="dialog-company-key">${company.company_key}</span>
-                    </div>
-                </div>
-                <div class="dialog-company-basics">
-                    <div class="dialog-titlenattr">
-                        <span>Phone No. : </span>
-                        <span class="dialog-cbasic">${company.company_phone}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>Email : </span>
-                        <span class="dialog-cbasic">${company.company_email}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>Address : </span>
-                        <span class="dialog-cbasic">${company.company_address}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>Website : </span>
-                        <span class="dialog-cbasic">${company.company_website}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="dialog-company-secondary-container">
-                <div class="dialog-company-tax-info">
-                    <div class="dialog-titlenattr">
-                        <span>GST No. : </span>
-                        <span class="dialog-ctax">${company.company_gst_num || "Not Set"}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>UIN No. : </span>
-                        <span class="dialog-ctax">${company.company_uin_num || "Not Set"}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>TDS No. : </span>
-                        <span class="dialog-ctax">${company.company_tds_num || "Not Set"}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>PAN No. : </span>
-                        <span class="dialog-ctax">${company.company_pan_num || "Not Set"}</span>
-                    </div>
-                </div>
-                <div class="dialog-company-bank-info">
-                    <div class="dialog-titlenattr">
-                        <span>Bank Name : </span>
-                        <span class="dialog-cbank">${company.company_bank_name || "Not Set"}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>Bank A/C No. : </span>
-                        <span class="dialog-cbank">${company.company_bank_acc_num || "Not Set"}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>Bank A/C Type : </span>
-                        <span class="dialog-cbank">${company.company_bank_acc_type || "Not Set"}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>Bank IFSC : </span>
-                        <span class="dialog-cbank">${company.company_bank_ifsc_code || "Not Set"}</span>
-                    </div>
-                    <div class="dialog-titlenattr">
-                        <span>Bank Branch : </span>
-                        <span class="dialog-cbank">${company.company_bank_branch || "Not Set"}</span>
-                    </div>
-                </div>
-                <div class="dialog-company-documents">
-                    <div class="dialog-companydoc">
-                        <span>Company Stamp : </span>
-                        <div class="dialog-docimg">
-                            <img src="/static/${company.company_stamp_photo || "Assets/Images/not_set.png"}" alt="Company Stamp">
-                        </div>
-                    </div>
-                    <div class="dialog-companydoc">
-                        <span>Company Signature : </span>
-                        <div class="dialog-docimg">
-                            <img src="/static/${company.company_signature_photo || "Assets/Images/not_set.png"}" alt="Company Signature">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="download-div">
-            <button id="downloadButton"><i class="fi fi-rr-file-download"></i>Download Image</button>
-        </div>
-    `;
-
-    const closeButton = document.querySelector(".close-button");
-    closeButton.onclick = function () {
-        modal.close();
-        document.body.style.overflow = '';
-    };
-
-    const modal = document.getElementById("modal");
-    modal.showModal();
-    document.body.style.overflow = 'hidden';
-
-    // Move this logic here to ensure elements are present
-    const captureElement = document.querySelector('.dialog-company-primary-container');
-    const downloadButton = document.getElementById('downloadButton');
-    const keyHide = document.querySelector('.dialog-company-key');
-
-    if (captureElement && downloadButton) {
-        downloadButton.addEventListener('click', () => {
-            keyHide.style.display = 'none';
-            html2canvas(captureElement).then(canvas => {
-                const image = canvas.toDataURL('image/png');
-                const link = document.createElement('a');
-                link.href = image;
-                link.download = 'companyInfo.png';
-                link.click();
-                keyHide.style.display = '';
-            }).catch(error => {
-                console.error('Error capturing the element:', error);
-                keyHide.style.display = '';
-            });
-        });
-    } else {
-        console.error('captureElement or downloadButton is not found in the DOM');
-    }
-}
 
 $(function () {
     $.contextMenu({
@@ -271,20 +103,57 @@ $(function () {
         trigger: 'left',
         callback: function (key, options) {
             var $icon = options.$trigger;
-            var companyId = $icon.data('id');
-            var companyKey = $icon.data('key');
-            if (key === "view") {
-                fetchCompanyData(companyKey, companyId);
-            } else if (key === "edit") {
-                window.location.assign(`/admin/masters/accounts/edit?id=${companyId}&key=${companyKey}`);
+            var accountId = $icon.data('id')
+            var accountUname = $icon.data('uname')
+            if (key === "edit") {
+                window.location.assign(`/admin/accounts/edit?id=${accountId}`);
             } else if (key === "delete") {
-                alert("Delete company with ID: " + companyId + " and Key: " + companyKey);
+                Swal.fire({
+                    title: 'Delete Account',
+                    text: "Are you sure you want to delete account with name: " + accountUname + "?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/api/deleteAccount',
+                            type: 'POST',
+                            contentType: 'application/json',
+                            data: JSON.stringify({ id: accountId }),
+                            success: function (response) {
+                                if (response.status === "success") {
+                                    iziToast.success({
+                                        title: 'Success',
+                                        message: `Account successfully deleted.`,
+                                        position: 'topRight',
+                                    });
+                                    fetchAllAccounts();
+                                } else {
+                                    Swal.fire(
+                                        'Error!',
+                                        response.message,
+                                        'error'
+                                    );
+                                }
+                            },
+                            error: function (xhr, status, error) {
+                                Swal.fire(
+                                    'Error!',
+                                    'An error occurred: ' + xhr.responseText,
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
             }
         },
         items: {
-            "view": { name: "View", icon: 'fas fa-eye' },
             "edit": { name: "Edit", icon: "edit" },
-            "delete": { name: "Delete", icon: "delete", disabled: true },
+            "delete": { name: "Delete", icon: "delete" },
             "sep1": "---------",
             "quit": { name: "Quit", icon: function ($element, key, item) { return 'context-menu-icon context-menu-icon-quit'; } }
         }

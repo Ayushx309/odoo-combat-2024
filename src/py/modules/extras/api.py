@@ -40,6 +40,18 @@ def getaccounts():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/api/deleteAccount', methods=['POST'])
+def delete_account():
+    user_id = request.json.get('id')
+    if user_id:
+        deleteStatus = deleteAccount(user_id)
+        if deleteStatus:
+            return jsonify({"status": "success", "message": "Account deleted successfully"}), 200
+        else:
+            return jsonify({"status": "failure", "message": "Account not deleted!"}), 500
+    else:
+        return jsonify({"status": "error", "message": "Account not found"}), 404
+
 
 def checkUsernameAvailabilityDB(username):
     cursor.execute("SELECT * FROM accounts WHERE user_name = %s",(username,))
@@ -48,3 +60,13 @@ def checkUsernameAvailabilityDB(username):
        return True
     else:
        return False
+    
+def deleteAccount(id):
+    try:
+        cursor.execute("DELETE FROM accounts WHERE user_id = %s", (id,))
+        if cursor.rowcount > 0:
+            return True
+        else:
+            return False
+    except Exception as e:
+        return False
