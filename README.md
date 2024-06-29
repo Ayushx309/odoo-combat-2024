@@ -1,6 +1,10 @@
 # Secure Examination Paper Distribution System
-
 ## odoo combat 2024 Hackathon (Built-in 12 hrs)
+![](https://img.shields.io/github/repo-size/Ayushx309/odoo-combat-2024)
+![](https://img.shields.io/github/v/release/Ayushx309/odoo-combat-2024)
+![](https://img.shields.io/github/forks/Ayushx309/odoo-combat-2024)
+![](https://img.shields.io/github/stars/Ayushx309/odoo-combat-2024)
+
 
 This project offers a secure and reliable platform for distributing examination papers, guaranteeing the integrity and confidentiality of exams.
 
