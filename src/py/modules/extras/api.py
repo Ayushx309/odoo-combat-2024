@@ -22,7 +22,7 @@ def checkUsernameAvailability():
     return jsonify({'exists': checkUsernameAvailabilityDB(username)}), 200
 
 
-@app.route('/api/accounts')
+@app.route('/api/accounts', methods=['POST'])
 def getaccounts():
     try:
         cursor.execute("SELECT * FROM accounts")

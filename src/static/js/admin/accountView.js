@@ -13,7 +13,7 @@ function fetchAllAccounts() {
         headers: {
             'Authorization': '@**SPDS@**',
             'Content-Type': 'application/json'
-        },
+        },method: 'post'
     })
         .then(response => response.json())
         .then(data => {
