@@ -50,8 +50,10 @@ main,section{
 
 .main-container{
     height: 100%;
-    width: 100%;   
+    width: 100%;
+    overflow: auto;
 }
+
 .tab-menu-container{
     height: auto;
     padding-top: 2.5rem;
