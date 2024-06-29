@@ -17,9 +17,28 @@ def checkUsernameAvailability():
     if not data or 'username' not in data:
         return jsonify({'error': 'Please provide a username'}), 400
     
-    username = data['username']
+    username: str = data['username']
     print(checkUsernameAvailabilityDB(username))
     return jsonify({'exists': checkUsernameAvailabilityDB(username)}), 200
+
+
+@app.route('/api/accounts')
+def getaccounts():
+    try:
+        cursor.execute("SELECT * FROM accounts")
+        accounts = cursor.fetchall()
+
+        response_data = {
+                'accounts': [{
+                    'username': account[1], 'display_name': account[2], 'role': account[4], 
+                    'last_login': account[5], 'creation' : account[6], 'id' : account[0]
+                } for account in accounts]
+            }
+        
+        return jsonify(response_data)
+    
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 def checkUsernameAvailabilityDB(username):

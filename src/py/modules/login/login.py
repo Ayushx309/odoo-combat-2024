@@ -2,6 +2,8 @@ from flask import Flask,render_template,session,request,redirect,url_for
 from config import app,conn,cursor
 from werkzeug.security import check_password_hash
 from collections import namedtuple
+from mysql.connector import Error
+from datetime import datetime
 
 
 
@@ -47,9 +49,19 @@ def root():
 
 @app.route('/logout')
 def logout():
-    session.clear()
-    return redirect(url_for('login'))
+   activeUserData: dict = session.get('activeUserData')
+   insertLastLogin(activeUserData.get("id"))
+   session.clear()
+   return redirect(url_for('login'))
 
+
+def insertLastLogin(id):
+   try:
+      cursor.execute("UPDATE accounts SET user_lastlogin = %s WHERE user_id = %s",(datetime.now(), id))
+      return True
+   except Error as e:
+      conn.rollback()
+      return False
 
 def doesUserExist(username):
 

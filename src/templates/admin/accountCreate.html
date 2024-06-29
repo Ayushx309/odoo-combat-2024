@@ -36,30 +36,31 @@
                         <div class="form-category-input">
                             <span class="form-input-label">Username</span>
                             <div class="form-input-styling" id="username-styling">
-                                <input type="text" id="user_name" name="user_name" class="form_input"
-                                    autocomplete="off" />
+                                <input type="text" id="user_name" name="user_name" class="form_input" autocomplete="off"
+                                    required />
                             </div>
                         </div>
                         <div class="form-category-input">
                             <span class="form-input-label">Display Name</span>
                             <div class="form-input-styling">
-                                <input type="text" name="user_dname" class="form_input" autocomplete="off" />
+                                <input type="text" name="user_dname" class="form_input" autocomplete="off" required />
                             </div>
                         </div>
                         <div class="form-category-input">
                             <span class="form-input-label">Password</span>
                             <div class="form-input-styling">
-                                <input type="password" name="user_password" class="form_input" autocomplete="off" />
+                                <input type="password" name="user_password" class="form_input" autocomplete="off"
+                                    required />
                             </div>
                         </div>
                         <div class="form-category-input">
                             <span class="form-input-label">User Role</span>
                             <div class="form-input-styling">
-                                <select name="user_role" class="form_input form_select">
-                                    <option value="not_defined" selected disabled>Select user role</option>
+                                <select id="userRole" name="user_role" class="form_input form_select" required>
+                                    <!-- <option value="not_defined" disabled>Select user role</option> -->
                                     <option value="administrator">Administrator</option>
                                     <option value="examiners">Examiners</option>
-                                    <option value="invigilators">Invigilators</option>
+                                    <option value="invigilators"  selected>Invigilators</option>
                                 </select>
                             </div>
                         </div>
@@ -177,6 +178,8 @@
                 }
             });
         });
+
+   
     </script>
     <script>
         $(document).ready(function () {
@@ -191,16 +194,19 @@
                     success: function (response) {
                         if (response.exists) {
                             $('#username-styling').attr('style', 'border: 2px solid red');
-                            $('#create').prop('disabled',true);
+                            $('#create').prop('disabled', true);
                             iziToast.warning({
                                 title: 'Warning',
                                 message: `Username '${username}' not available`,
                                 position: 'topRight',
                             });
 
-                        } else {
+                        } else if (username === "") {
+
+                        }
+                        else {
                             $('#username-styling').attr('style', 'border: 2px solid green');
-                            $('#create').prop('disabled',false);
+                            $('#create').prop('disabled', false);
                         }
                     },
                     error: function (error) {
